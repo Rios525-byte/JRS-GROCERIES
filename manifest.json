@@ -1,0 +1,11 @@
+{
+  "name": "JRS GROCERIES",
+  "short_name": "JRS",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fbf6ef",
+  "theme_color": "#c0392b",
+  "icons": [
+    { "src": "https://i.postimg.cc/JzQQbzfw/IMG-20251024-131417-404.webp", "sizes": "192x192", "type": "image/webp" }
+  ]
+}
