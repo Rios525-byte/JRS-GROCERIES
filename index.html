@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>JRS GROCERIES</title>
+  <meta name="description" content="JRS GROCERIES - Small ₹35 packets. Contact via WhatsApp +91 9790481036">
+  <!-- SEO / Social -->
+  <meta property="og:title" content="JRS GROCERIES">
+  <meta property="og:description" content="Small spice & snack packets — One card contains 12 pieces. WhatsApp to order: 9790481036">
+  <meta property="og:image" content="https://i.postimg.cc/JzQQbzfw/IMG-20251024-131417-404.webp">
+  <meta name="theme-color" content="#fbf6ef">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="https://i.postimg.cc/JzQQbzfw/IMG-20251024-131417-404.webp" alt="JRS Logo" class="logo" onerror="this.style.display='none'">
+      <div>
+        <h1>JRS GROCERIES</h1>
+        <div class="since">Delivering premium grocery packs since 2001</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-toggle" id="navToggle">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" data-view="home">Home</a></li>
+        <li><a href="#" data-view="products">Products</a></li>
+        <li><a href="#" data-view="favorites">Favorites ❤️</a></li>
+        <li><a href="about.html" target="_blank">About</a></li>
+        <li><a href="#" id="contactScroll">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button id="themeToggle" title="Toggle theme">🌓</button>
+      <a class="whatsapp-btn" href="https://wa.me/919790481036" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Search + Category -->
+    <section class="controls">
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Search products (பெயர் அல்லது விலை) — உதாரணம்: மிளகு">
+        <div id="suggestions" class="suggestions" aria-hidden="true"></div>
+      </div>
+      <div class="filters">
+        <select id="category">
+          <option value="all">All Categories</option>
+          <option value="spices">Spices</option>
+          <option value="nuts">Nuts</option>
+          <option value="vathal">Vathal</option>
+          <option value="snacks">Snacks</option>
+        </select>
+        <select id="sort">
+          <option value="default">Sort</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="productsSection">
+      <div id="count" class="count"></div>
+      <section id="grid" class="grid" aria-live="polite"></section>
+    </section>
+
+    <!-- Favorites Section (hidden by default) -->
+    <section id="favoritesSection" class="hidden">
+      <h2>Your Favorites</h2>
+      <div id="favGrid" class="grid"></div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal" aria-hidden="true">
+      <div class="modal-box">
+        <button class="modal-close" id="modalClose">✕</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a id="floatWA" class="float-wa" href="https://wa.me/919790481036" target="_blank" rel="noopener" title="Order on WhatsApp">💬</a>
+
+    <!-- Contact / Footer area -->
+    <footer id="contact" class="site-footer">
+      <div class="footer-col">
+        <h3>JRS GROCERIES</h3>
+        <p>Address: North Street, Pandiyan Nagar, Kariyapatti, Virudhunagar District, Tamil Nadu</p>
+        <p>WhatsApp: <a href="https://wa.me/919790481036" target="_blank">9790481036</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Follow us</h4>
+        <div class="socials">
+          <a href="https://youtube.com/@jrs_groceries?si=GIcqTmxvRzy8qY9_" target="_blank">📺 YouTube</a>
+          <a href="https://www.facebook.com/share/1CFa3uk53y/" target="_blank">📘 Facebook</a>
+          <a href="https://www.instagram.com/jrs_spices?igsh=MW0wN2xpY3ZjdHJjbA==" target="_blank">📸 Instagram</a>
+          <a href="https://pin.it/1hKLApxY1" target="_blank">📌 Pinterest</a>
+          <a href="https://x.com/ravindhar_jrs" target="_blank">🕊 X</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <a href="terms.html" target="_blank">Terms & Conditions</a> • <a href="privacy.html" target="_blank">Privacy Policy</a>
+        <div class="copyright">© 2025 JRS GROCERIES</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+  <script>
+    // register service worker for PWA (if supported)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(()=>console.log('SW register failed'));
+    }
+  </script>
+</body>
+</html>
