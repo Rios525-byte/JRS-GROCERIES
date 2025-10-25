@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>JRS Admin</title>
+  <style>
+    body{font-family:Arial;padding:18px;background:#f6f6f6}
+    .box{max-width:700px;background:#fff;padding:16px;border-radius:8px;margin:0 auto;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    input,textarea,select{width:100%;padding:8px;margin:6px 0;border-radius:6px;border:1px solid #ddd}
+    button{padding:10px 12px;border-radius:8px;background:#c0392b;color:#fff;border:0;cursor:pointer}
+    .hint{font-size:13px;color:#666}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>JRS Admin Upload</h2>
+    <div id="loginBox">
+      <p class="hint">Enter admin password to continue</p>
+      <input id="pwd" type="password" placeholder="Password">
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <div id="adminPanel" style="display:none">
+      <p class="hint">Add a new product (this edits local client copy — to persist on server, upload products.json on server)</p>
+      <input id="pname" placeholder="Product name">
+      <input id="pprice" placeholder="Price">
+      <input id="pimg" placeholder="Image direct link (https://...)">
+      <select id="pcat">
+        <option value="spices">spices</option>
+        <option value="nuts">nuts</option>
+        <option value="vathal">vathal</option>
+        <option value="snacks">snacks</option>
+      </select>
+      <button id="addBtn">Add Product (preview only)</button>
+      <pre id="out" style="background:#f1f1f1;padding:8px;border-radius:6px;margin-top:10px"></pre>
+      <p class="hint">Copy the JSON below into products.json on server to make permanent.</p>
+    </div>
+  </div>
+
+  <script>
+    const ADMIN_PWD = "jrsadmin2025"; // your password
+    document.getElementById('loginBtn').onclick = ()=>{
+      const v = document.getElementById('pwd').value;
+      if(v === ADMIN_PWD){ document.getElementById('loginBox').style.display='none'; document.getElementById('adminPanel').style.display='block'; loadProducts(); }
+      else alert('Wrong password');
+    };
+
+    let products = [];
+    function loadProducts(){
+      fetch('products.json').then(r=>r.json()).then(j=>{ products = j; document.getElementById('out').innerText = JSON.stringify(products, null, 2); });
+    }
+
+    document.getElementById('addBtn').onclick = ()=>{
+      const name = document.getElementById('pname').value.trim();
+      const price = parseFloat(document.getElementById('pprice').value) || 35;
+      const img = document.getElementById('pimg').value.trim() || null;
+      const cat = document.getElementById('pcat').value;
+      const id = 'p'+(Math.floor(Math.random()*100000));
+      if(!name){ alert('Enter name'); return; }
+      products.push({id,name,price,img,category:cat});
+      document.getElementById('out').innerText = JSON.stringify(products, null, 2);
+      alert('Product added to preview. To save permanently, upload the updated products.json to your host.');
+    };
+  </script>
+</body>
+</html>
